@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "wishlist",
   "version": "",
   "scripts" : {
     "build": "tsc",

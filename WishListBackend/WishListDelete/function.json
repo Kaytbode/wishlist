@@ -1,0 +1,18 @@
+{
+  "bindings": [
+    {
+      "authLevel": "Anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": ["delete"],
+      "route": "wishlist/{id}"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    }
+  ],
+  "scriptFile": "../dist/WishListDelete/index.js"
+}
