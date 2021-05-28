@@ -27,7 +27,12 @@ export default function AllWishes({ wishes }) {
                                 <div class="card-body">
                                     <h5 class="card-title">{wish.name}</h5>
                                     <p class="card-text">{wish.description}</p>
-                                    <a href="#" class="btn btn-primary">Button</a>
+                                    <Link href={{
+                                        pathname: '/wish/[id]',
+                                        query: { id: wish.id, name: wish.name, description: wish.description}
+                                    }}>
+                                        <button class="btn btn-primary">Edit Wish</button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
