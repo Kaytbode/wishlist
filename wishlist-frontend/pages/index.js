@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import HomeForm from '../components/home'
 
 export default function Home() {
   return (
@@ -14,19 +15,7 @@ export default function Home() {
         </div>
       </nav>
       <main>
-        <form>
-          <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" aria-describedby="nameHelp" required/>
-            <div id="nameHelp" class="form-text">What would you name your wish?</div>
-          </div>
-          <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
-            <input type="text" class="form-control" id="description" aria-describedby="descriptionHelp" required/>
-            <div id="descriptionHelp" class="form-text">Describe your wish in a short sentence.</div>
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        <HomeForm/>
       </main>
     </div>
   )

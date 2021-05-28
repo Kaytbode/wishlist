@@ -2,8 +2,8 @@ module.exports = {
     async rewrites() {
       return [
         {
-          source: '/:path*',
-          destination: 'http://localhost:7071/:path*',
+          source: '/api/:path*',
+          destination: 'http://localhost:7071/api/:path*',
         },
       ]
     },
