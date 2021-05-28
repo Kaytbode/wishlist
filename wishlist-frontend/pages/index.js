@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import HomeForm from '../components/home'
 
 export default function Home() {
@@ -11,7 +12,12 @@ export default function Home() {
       </Head>
       <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
-          <span class="navbar-brand mb-0 h1">Wish List</span>
+          <Link href="/">
+            <a class="navbar-brand mb-0 h1">Wish List</a>
+          </Link>
+          <Link href="/allwishes">
+            <a class="navbar-brand">All Wishes</a>
+          </Link>
         </div>
       </nav>
       <main>

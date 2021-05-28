@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 
 export default function AllWishes({ wishes }) {
     return (
@@ -10,15 +11,28 @@ export default function AllWishes({ wishes }) {
             </Head>
             <nav class="navbar navbar-light bg-light">
                 <div class="container-fluid">
-                    <span class="navbar-brand mb-0 h1">Wish List</span>
+                    <Link href="/">
+                        <a class="navbar-brand mb-0 h1">Wish List</a>
+                    </Link>
+                    <Link href="/allwishes">
+                        <a class="navbar-brand">All Wishes</a>
+                    </Link>
                 </div>
             </nav>
             <main>
-                <ul>
+                <div class="row row-cols-1 row-cols-md-3 g-4">
                     {wishes.reverse().map((wish) => (
-                    <li>{wish.name}</li>
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">{wish.name}</h5>
+                                    <p class="card-text">{wish.description}</p>
+                                    <a href="#" class="btn btn-primary">Button</a>
+                                </div>
+                            </div>
+                        </div>
                     ))}
-                </ul>
+                </div>
             </main>
         </div>
     )
@@ -27,8 +41,6 @@ export default function AllWishes({ wishes }) {
 export async function getStaticProps() {
     const res = await fetch('http://localhost:3000/api/wishlist/allwishes')
     const wishes = await res.json()
-
-    console.log(wishes)
   
     return {
       props: {
