@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import Delete from '../components/delete'
 
 export default function AllWishes({ wishes }) {
     return (
@@ -33,6 +34,7 @@ export default function AllWishes({ wishes }) {
                                     }}>
                                         <button class="btn btn-primary">Edit Wish</button>
                                     </Link>
+                                    <Delete wish = {wish}/>
                                 </div>
                             </div>
                         </div>
