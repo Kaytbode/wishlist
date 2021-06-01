@@ -25,7 +25,7 @@ export default function Delete({ wish }) {
 
     return (
         <form onSubmit={deleteWish}>
-            <button type="submit" class="btn btn-primary">Delete</button>
+            <button type="submit" class="btn btn-danger">Delete Wish</button>
         </form>
     )
 }

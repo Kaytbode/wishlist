@@ -41,7 +41,9 @@ export default function Edit() {
                 <input type="text" name="description" class="form-control" id="description" aria-describedby="descriptionHelp" placeholder={query.description} required/>
                 <div id="descriptionHelp" class="form-text">Describe your wish in a short sentence.</div>
             </div>
-            <button type="submit" class="btn btn-primary">Edit</button>
+            <div class="d-grid gap-2 col-6 mx-auto" style={{ marginTop: 40 }}>
+                <button type="submit" class="btn btn-lg btn-primary">Edit</button>
+            </div>
         </form>
     )
 }

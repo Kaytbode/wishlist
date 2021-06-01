@@ -39,7 +39,9 @@ function HomeForm() {
                 <input type="text" name="description" class="form-control" id="description" aria-describedby="descriptionHelp" required/>
                 <div id="descriptionHelp" class="form-text">Describe your wish in a short sentence.</div>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="d-grid gap-2 col-6 mx-auto" style={{ marginTop: 40 }}>
+                <button type="submit" class="btn btn-lg btn-success">Create a Wish</button>
+            </div>
         </form>
     )
 }

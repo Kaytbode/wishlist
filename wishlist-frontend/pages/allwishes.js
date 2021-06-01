@@ -20,7 +20,7 @@ export default function AllWishes({ wishes }) {
                     </Link>
                 </div>
             </nav>
-            <main>
+            <main style={{ marginTop: 50, minWidth: 230 }}>
                 <div class="row row-cols-1 row-cols-md-3 g-4">
                     {wishes.reverse().map((wish) => (
                         <div class="col">
@@ -28,13 +28,19 @@ export default function AllWishes({ wishes }) {
                                 <div class="card-body">
                                     <h5 class="card-title">{wish.name}</h5>
                                     <p class="card-text">{wish.description}</p>
-                                    <Link href={{
-                                        pathname: '/wish/[id]',
-                                        query: { id: wish.id, name: wish.name, description: wish.description}
-                                    }}>
-                                        <button class="btn btn-primary">Edit Wish</button>
-                                    </Link>
-                                    <Delete wish = {wish}/>
+                                    <div class="row align-items-start">
+                                        <div class="col">
+                                            <Link href={{
+                                                pathname: '/wish/[id]',
+                                                query: { id: wish.id, name: wish.name, description: wish.description}
+                                            }}>
+                                                <button class="btn btn-light">Edit Wish</button>
+                                            </Link>
+                                        </div>
+                                        <div class="col">
+                                            <Delete wish = {wish}/>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

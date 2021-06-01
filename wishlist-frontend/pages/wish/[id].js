@@ -20,8 +20,9 @@ export default function EditWish() {
           </Link>
         </div>
       </nav>
-      <main>
-          <Edit/>
+      <main style = {{ margin: 'auto', marginTop: 100, maxWidth: 400, minWidth: 200 }}>
+        <p class="lead text-center">Edit your wish</p>
+        <Edit/>
       </main>
     </div>
   )
