@@ -20,7 +20,8 @@ export default function Home() {
           </Link>
         </div>
       </nav>
-      <main>
+      <main style = {{ margin: 'auto', marginTop: 100, maxWidth: 400, minWidth: 200 }}>
+        <p class="lead text-center">Make a wish</p>
         <HomeForm/>
       </main>
     </div>

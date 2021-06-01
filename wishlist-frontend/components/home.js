@@ -21,7 +21,6 @@ function HomeForm() {
       )
   
       const result = await res.json()
-      console.log(result)
 
       router.push('/allwishes')
 
