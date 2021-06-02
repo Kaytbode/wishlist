@@ -40,14 +40,20 @@ async function putWish({ req, res }: Context) {
   }
 }
 
-async function deleteWish({ req, res }: Context) {
-  const { id } = req.params;
+async function deleteWish(Context) {
+  const { id } = Context.req.params;
 
   try {
     data.deleteWish(id);
-    res.status(200).json({});
+    Context.res = {
+      status: 200,
+      success: 'wish successfully deleted'
+    };
   } catch (error) {
-    res.status(500).send(error);
+    Context.res = {
+      status: 500,
+      error
+    }
   }
 }
 

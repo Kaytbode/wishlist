@@ -1,5 +1,11 @@
 const data = {
-  wishlist: []
+  wishlist: [
+    {
+      id: '1',
+      name: 'mock-test',
+      description: 'for test purposes'
+    }
+  ]
 };
 
 const addWish = wish => {

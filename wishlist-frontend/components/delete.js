@@ -14,7 +14,7 @@ export default function Delete({ wish }) {
     const deleteWish = async event => {
       event.preventDefault()
       
-      const res = await fetch(
+      await fetch(
         `http://localhost:3000/api/wishlist/${wish.id}`,
         {
           headers: {
@@ -23,8 +23,6 @@ export default function Delete({ wish }) {
           method: 'DELETE'
         }
       )
-
-      const result = await res.json()
 
       handleClose()
 
