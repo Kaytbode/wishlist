@@ -1,12 +1,18 @@
 import { Context } from '@azure/functions';
 import * as data from './data';
 
-async function getWishList({ req, res }: Context) {
+async function getWishList(Context) {
   try {
     const wishList = data.getWishList();
-    res.status(200).json(wishList);
+    Context.res = {
+      status: 200,
+      wishList
+    };
   } catch (error) {
-    res.status(500).send(error);
+    Context.res = {
+      status: 500,
+      error
+    };
   }
 }
 

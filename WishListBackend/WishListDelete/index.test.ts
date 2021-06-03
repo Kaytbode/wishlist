@@ -23,7 +23,7 @@ test('Context object parameters are accessible', async () => {
 
     context = { 
         req : { params: {id: '1'} }
-    };
+    } as unknown as Context;
 
     expect(context.req.params.id).toBe('1');
 });
@@ -33,8 +33,8 @@ test('Returns 200 when entry is deleted', async () => {
 
     context = { 
         req : { params: {id: '1'} },
-        res:  { status: 200 }
-    };
+        res:  { }
+    } as unknown as Context;
 
     await httpTrigger(context);
 
@@ -47,7 +47,7 @@ test('Returns 200 if entry is absent', async () => {
     context = { 
         req : { params: {id: '2'} },
         res:  { }
-    };
+    } as unknown as Context;
 
     await httpTrigger(context);
 
