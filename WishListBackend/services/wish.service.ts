@@ -37,18 +37,24 @@ async function postWish(Context) {
   }
 }
 
-async function putWish({ req, res }: Context) {
+async function putWish(Context) {
   const wish = {
-    id: req.params.id,
-    name: req.body.name,
-    description: req.body.description
+    id: Context.req.params.id,
+    name: Context.req.body.name,
+    description: Context.req.body.description
   };
 
   try {
     const updatedWish = data.updateWish(wish);
-    res.status(200).json(updatedWish);
+    Context.res = {
+      status: 200,
+      updatedWish
+    };
   } catch (error) {
-    res.status(500).send(error);
+    Context.res = { 
+      status: 500, 
+      error
+    };
   }
 }
 
