@@ -16,18 +16,24 @@ async function getWishList(Context) {
   }
 }
 
-async function postWish({ req, res }: Context) {
+async function postWish(Context) {
   const wish = {
     id: undefined,
-    name: req.body.name,
-    description: req.body.description
+    name: Context.req.body.name,
+    description: Context.req.body.description
   };
 
   try {
     const newWish = data.addWish(wish);
-    res.status(201).json(newWish);
+    Context.res = {
+      status: 201,
+      newWish
+    };
   } catch (error) {
-    res.status(500).send(error);
+    Context.res = {
+      status: 500,
+      error
+    };
   }
 }
 
