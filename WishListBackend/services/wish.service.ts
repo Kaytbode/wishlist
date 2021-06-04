@@ -1,18 +1,15 @@
 import { Context } from '@azure/functions';
 import * as data from './data';
+import validateInput from './validate';
 
 async function getWishList(context: Context) {
   try {
-    const wishList = data.getWishList();
-    context.res = {
-      status: 200,
-      wishList
-    };
+    const wishes = data.getWishList();
+
+    context.done(null, {body: { status: 200, wishes }});
+   
   } catch (error) {
-    context.res = {
-      status: 500,
-      error
-    };
+    context.done(null, {body: { status: 500, error: `${error.name}: ${error.message}` }}); 
   }
 }
 
@@ -24,16 +21,18 @@ async function postWish(context: Context) {
   };
 
   try {
+    const validated = validateInput(wish);
+
+    if(!validated) {
+      throw new Error('Expression not permitted');
+    }
+
     const newWish = data.addWish(wish);
-    context.res = {
-      status: 201,
-      newWish
-    };
+
+    context.done(null, {body: { status: 201, newWish }});
+    
   } catch (error) {
-    context.res = {
-      status: 500,
-      error
-    };
+    context.done(null, {body: { status: 500, error: `${error.name}: ${error.message}` }}); 
   }
 }
 
@@ -45,16 +44,19 @@ async function putWish(context: Context) {
   };
 
   try {
+    const validated = validateInput(wish);
+
+    if(!validated) {
+      throw new Error('Expression not permitted');
+    }
+
     const updatedWish = data.updateWish(wish);
-    context.res = {
-      status: 200,
-      updatedWish
-    };
+
+    context.done(null, {body: { status: 200, updatedWish }});
+  
   } catch (error) {
-    context.res = { 
-      status: 500, 
-      error
-    };
+
+    context.done(null, {body: { status: 500, error: `${error.name}: ${error.message}` }});
   }
 }
 
@@ -63,15 +65,10 @@ async function deleteWish(context: Context) {
 
   try {
     data.deleteWish(id);
-    context.res = {
-      status: 200,
-      success: 'wish successfully deleted'
-    };
+
+    context.done(null, {body: { status: 200, success: 'wish successfully deleted' }});
   } catch (error) {
-    context.res = {
-      status: 500,
-      error
-    }
+    context.done(null, {body: { status: 500, error: `${error.name}: ${error.message}` }});
   }
 }
 

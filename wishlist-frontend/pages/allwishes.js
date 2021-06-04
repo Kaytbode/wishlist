@@ -54,7 +54,8 @@ export default function AllWishes({ wishes }) {
 
 export async function getStaticProps() {
     const res = await fetch('http://localhost:3000/api/wishlist/allwishes')
-    const wishes = await res.json()
+
+    const { wishes } = await res.json();
   
     return {
       props: {

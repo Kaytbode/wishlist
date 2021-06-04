@@ -1,7 +1,10 @@
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 
 function HomeForm() {
     const router = useRouter();
+
+    const [message, setMessage] = useState('');
 
     const postAWish = async event => {
       event.preventDefault()
@@ -19,10 +22,19 @@ function HomeForm() {
           method: 'POST'
         }
       )
-  
-      const result = await res.json()
+      
+      const result = await res.json();
 
-      router.push('/allwishes')
+      const { error } = result;
+
+      if(error) {
+        setMessage(error);
+        router.push('/');
+      }
+
+      else {
+        router.push('/allwishes')
+      }
 
       event.target.reset()
     }
@@ -39,6 +51,7 @@ function HomeForm() {
                 <input type="text" name="description" class="form-control" id="description" aria-describedby="descriptionHelp" required/>
                 <div id="descriptionHelp" class="form-text">Describe your wish in a short sentence.</div>
             </div>
+            <p>{message}</p>
             <div class="d-grid gap-2 col-6 mx-auto" style={{ marginTop: 40 }}>
                 <button type="submit" class="btn btn-lg btn-success">Create a Wish</button>
             </div>

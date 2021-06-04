@@ -1,8 +1,11 @@
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 
 export default function Edit() {
     const router = useRouter();
     const {query} = router;
+
+    const [message, setMessage] = useState('');
 
     const editAWish = async event => {
       event.preventDefault()
@@ -20,11 +23,19 @@ export default function Edit() {
           method: 'PUT'
         }
       )
-  
-      const result = await res.json()
-      console.log(result)
+      
+      const result = await res.json();
 
-      router.push('/allwishes')
+      const { error } = result;
+
+      if(error) {
+        setMessage(error);
+        router.push(`/wish/${query.id}`);
+      }
+
+      else {
+        router.push('/allwishes')
+      }
 
       event.target.reset()
     }
@@ -41,6 +52,7 @@ export default function Edit() {
                 <input type="text" name="description" class="form-control" id="description" aria-describedby="descriptionHelp" placeholder={query.description} required/>
                 <div id="descriptionHelp" class="form-text">Describe your wish in a short sentence.</div>
             </div>
+            <p>{message}</p>
             <div class="d-grid gap-2 col-6 mx-auto" style={{ marginTop: 40 }}>
                 <button type="submit" class="btn btn-lg btn-primary">Edit</button>
             </div>
