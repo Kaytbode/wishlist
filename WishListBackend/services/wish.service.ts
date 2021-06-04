@@ -1,74 +1,74 @@
 import { Context } from '@azure/functions';
 import * as data from './data';
 
-async function getWishList(Context) {
+async function getWishList(context: Context) {
   try {
     const wishList = data.getWishList();
-    Context.res = {
+    context.res = {
       status: 200,
       wishList
     };
   } catch (error) {
-    Context.res = {
+    context.res = {
       status: 500,
       error
     };
   }
 }
 
-async function postWish(Context) {
+async function postWish(context: Context) {
   const wish = {
     id: undefined,
-    name: Context.req.body.name,
-    description: Context.req.body.description
+    name: context.req.body.name,
+    description: context.req.body.description
   };
 
   try {
     const newWish = data.addWish(wish);
-    Context.res = {
+    context.res = {
       status: 201,
       newWish
     };
   } catch (error) {
-    Context.res = {
+    context.res = {
       status: 500,
       error
     };
   }
 }
 
-async function putWish(Context) {
+async function putWish(context: Context) {
   const wish = {
-    id: Context.req.params.id,
-    name: Context.req.body.name,
-    description: Context.req.body.description
+    id: context.req.params.id,
+    name: context.req.body.name,
+    description: context.req.body.description
   };
 
   try {
     const updatedWish = data.updateWish(wish);
-    Context.res = {
+    context.res = {
       status: 200,
       updatedWish
     };
   } catch (error) {
-    Context.res = { 
+    context.res = { 
       status: 500, 
       error
     };
   }
 }
 
-async function deleteWish(Context) {
-  const { id } = Context.req.params;
+async function deleteWish(context: Context) {
+  const { id } = context.req.params;
 
   try {
     data.deleteWish(id);
-    Context.res = {
+    context.res = {
       status: 200,
       success: 'wish successfully deleted'
     };
   } catch (error) {
-    Context.res = {
+    context.res = {
       status: 500,
       error
     }
