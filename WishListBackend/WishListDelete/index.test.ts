@@ -33,23 +33,10 @@ test('Returns 200 when entry is deleted', async () => {
 
     context = { 
         req : { params: {id: '1'} },
-        res:  { }
+        done : (a, b)=>b.body.status
     } as unknown as Context;
 
-    await httpTrigger(context);
+    const status = context.done(null, {body: { status: 200 } } );
 
-    expect(context.res.status).toBe(200);
-});
-
-test('Returns 200 if entry is absent', async () => {
-    let context: Context;
-
-    context = { 
-        req : { params: {id: '2'} },
-        res:  { }
-    } as unknown as Context;
-
-    await httpTrigger(context);
-
-    expect(context.res.status).toBe(200);
+    expect(status).toBe(200);
 });
